@@ -1,10 +1,16 @@
-# docker-compose-influxdb-grafana
+# docker-compose-influxdb-grafana-rpi3b
 
-Multi-container Docker app built from the following services:
+# Issues / important
+
+  - Use 5.4.3 version untill this issue isn't resolved https://github.com/grafana/grafana/issues/19585
+
+Multi-container Docker app built from the following services for monitoring rpi3b device information.
 
 * [InfluxDB](https://github.com/influxdata/influxdb) - time series database
 * [Chronograf](https://github.com/influxdata/chronograf) - admin UI for InfluxDB
 * [Grafana](https://github.com/grafana/grafana) - visualization UI for InfluxDB
+* [RPi Monitoring](https://grafana.com/grafana/dashboards/10578)  
+
 
 Useful for quickly setting up a monitoring stack for performance testing. Combine with [serverless-artillery](https://github.com/Nordstrom/serverless-artillery) and [artillery-plugin-influxdb](https://github.com/Nordstrom/artillery-plugin-influxdb) to create a performance testing environment in minutes.
 
@@ -13,9 +19,9 @@ Useful for quickly setting up a monitoring stack for performance testing. Combin
 To start the app:
 
 1. Install [docker-compose](https://docs.docker.com/compose/install/) on the docker host.
-1. Clone this repo on the docker host.
-1. Optionally, change default credentials or Grafana provisioning.
-1. Run the following command from the root of the cloned repo:
+2. Clone this repo on the docker host.
+3. Optionally, change default credentials or Grafana provisioning.
+4. Run the following command from the root of the cloned repo:
 ```
 docker-compose up -d
 ```
