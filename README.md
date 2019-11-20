@@ -83,3 +83,31 @@ To provision additional data sources, see the Grafana [documentation](http://doc
 By default, the app does not create any Grafana dashboards. An example dashboard that's configured to work with [artillery-plugin-influxdb](https://github.com/Nordstrom/artillery-plugin-influxdb) is located at `./grafana-provisioning/dashboards/artillery.json.example`. To use this dashboard, rename it to `artillery.json`.
 
 To provision additional dashboards, see the Grafana [documentation](http://docs.grafana.org/administration/provisioning/#dashboards) and add a config file to `./grafana-provisioning/dashboards/` before starting the app.
+
+
+# Nginx
+
+https://www.domysee.com/blogposts/reverse-proxy-nginx-docker-compose
+
+Networks
+With networks it is possible to specific which containers can talk to each other. They are specified as a new root config entry and on the container configurations.
+
+version: '3'
+services:
+  nginx:
+    ...
+    networks:
+      - my-network-name
+      
+  ismydependencysafe:
+    ...
+    networks:
+      - my-network-name
+
+networks:
+  my-network-name:
+In the root object networks, the network my-network-name is defined. Each container is assigned to that network by adding it to the network list.
+
+If no network is specified, all containers are in the same network, which is created by default. Therefore, if only one network is used, no network has to be specified at all.
+
+A convenient feature of networks is that containers in the same one can reference each other by name. In the example above, the url http://ismydependencysafe will resolve to the container ismydependencysafe.
